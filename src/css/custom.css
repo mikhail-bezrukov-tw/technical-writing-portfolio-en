@@ -161,7 +161,7 @@ main.container{max-width:1120px}
 
 
 /* Landing About + contact section */
-.about-section{padding:64px 0 76px;border-top:1px solid var(--line);background:#fff}
+ .about-section{padding:64px 0 76px;scroll-margin-top:80px;border-top:1px solid var(--line);background:#fff}
 .about-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.75fr);gap:52px;align-items:start}
 .about-copy{font-size:16px;line-height:1.75;color:#435166;max-width:760px}
 .about-copy p{margin:0 0 18px}
