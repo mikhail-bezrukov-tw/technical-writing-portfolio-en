@@ -24,7 +24,7 @@ const config = {
         {to:'/case-studies/ai-screenshot-workflow', label:'AI workflow', position:'right'},
         {to:'/case-studies/docs-linter', label:'Docs tooling', position:'right'},
         {to:'/about', label:'About', position:'right'},
-        {to:'/mikhail-bezrukov-cv.pdf', label:'Resume', position:'right'},
+        {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'Resume', position:'right'},
       ],
     },
     footer: {
