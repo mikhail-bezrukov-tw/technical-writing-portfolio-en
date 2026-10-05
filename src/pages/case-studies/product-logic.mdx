@@ -1,0 +1,48 @@
+import Layout from '@theme/Layout';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+<Layout title="Turning Complex Product Logic into Clear Documentation" description="Documenting interconnected healthcare data rules so QA and analysts could trace why reports produced unexpected results.">
+<div className="wrap">
+<header className="casehead">
+<div className="eyebrow">Case 02 · Product investigation · Information architecture</div>
+<h1>Turning Complex Product Logic into Clear Documentation</h1>
+<p className="lede">Documenting interconnected healthcare data rules so QA and analysts could trace why reports produced unexpected results.</p>
+</header>
+<article className="content">
+<div className="sample-note">Anonymized production work for a U.S. healthcare IT product. Company, product, customer, and internal ticket identifiers are omitted.</div>
+
+## Context
+
+The same member could appear differently across reports and metrics. A patient might have had a real visit but still appear as Not Seen. The result depended on several connected rules: eligibility timing, source priority, provider relationships, visit data sources, and report configuration.
+
+## Constraints
+
+The rules were distributed across current and outdated documentation, internal diagrams, and domain knowledge held by different specialists. The original request covered only Members Seen logic, but that logic could not be explained accurately without the upstream eligibility and member-source rules.
+
+## My role
+
+I took the original documentation request, reconstructed the logic, and expanded the scope into three connected articles when I found that the concepts could not be explained cleanly in isolation. I also made the information-architecture decision to express the logic as decision flows rather than as a long narrative.
+
+## Approach
+
+I compared existing materials, traced dependencies between the three concepts, and verified unclear points with business analysts, data architects, and developers. I then organized the result around the decisions that determine whether a member appears in a report or receives a particular status.
+
+<div className="proof decision"><h3>Decision-flow evidence</h3><p>The documentation makes the order of conditions visible instead of burying it in prose.</p><img src={useBaseUrl('/img/members-seen-flow.png')} alt="Anonymized Members Seen decision flow" /></div>
+
+## Technical implementation
+
+The final set consisted of three linked reference articles — Members Seen, Member Eligibility, and Member Sources — supported by decision-flow diagrams. The diagrams make the order of conditions visible and turn troubleshooting into a traceable path rather than a search through disconnected rules.
+
+## Collaboration
+
+The reconstruction required domain input from business analysts, data architects, and developers. My role was to compare those sources, identify dependencies and contradictions, and turn the resolved model into documentation that internal QA and analytical teams could use.
+
+## Result
+
+The documentation connected Seen status, eligibility, and member-source rules in one reference model for investigating unexpected results. Instead of documenting one metric in isolation, I documented the dependencies needed to interpret it correctly.
+
+## What I learned
+
+When a visible product result depends on several upstream rules, an isolated article often preserves the ambiguity. Documenting the dependency model can be more useful than adding detail to the original page.
+
+</article></div></Layout>
