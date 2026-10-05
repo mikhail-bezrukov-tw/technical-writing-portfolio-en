@@ -1,58 +1,65 @@
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-<Layout title="Today (Patients)" description="Feature documentation / UI behavior">
-<div className="wrap">
-<header className="casehead"><div className="eyebrow">Documentation sample</div><h1>Today (Patients)</h1><p className="meta">Feature documentation / UI behavior</p></header>
-<article className="content article">
-<div className="sample-note">Portfolio-safe adaptation of production documentation. The Figma mockup uses fictional names and data; product/customer identifiers and internal Knowledge Base links are removed.</div>
+<Layout title="Today (Patients)" description="User-facing product documentation sample">
+<div className="docsample-shell">
+  <div className="docsample-context">
+    <div>
+      <span className="docsample-label">USER-FACING DOCUMENTATION SAMPLE</span>
+      <span className="docsample-context-text">Portfolio-safe adaptation of a production Knowledge Base article</span>
+    </div>
+    <Link to="/documentation">← Documentation Samples</Link>
+  </div>
 
-The **Today** page is the central dashboard of Clinical Copilot. It opens by default and gives clinical staff a same-day view of the selected PCP's schedule, along with AI-generated insights and quality metrics.
+  <article className="kb-article">
+    <h1>Today (Patients)</h1>
 
-<figure className="product-shot"><img src={useBaseUrl('/img/today-patients-mockup.png')} alt="Anonymized Figma mockup of the Today page with four numbered UI regions"/><figcaption>Figma mockup used for documentation. Names and clinical data are fictional.</figcaption></figure>
+    <div className="kb-two-column">
+      <div className="kb-copy">
+        <p>The <strong>Today</strong> page is the central dashboard of Clinical Copilot. It opens by default and gives clinical staff a same-day view of the selected PCP's schedule, along with AI-generated insights and quality metrics.</p>
 
-### 1. AI insight and daily context
+        <ol className="kb-numbered">
+          <li>At the top, Clinical Copilot greets the user and shows the date and number of patients scheduled for today. Below the greeting, an AI-generated insight highlights what needs attention — for example, open care gaps that can be closed during today's visits, patients with recent ER admissions, or pending medication refills. <strong>Ask Copilot</strong> opens the AI Assistant with this context already in view.</li>
+          <li><strong>Today's Summary</strong> gives an at-a-glance count of:
+            <ul>
+              <li><strong>Clarifications</strong> — open documentation clarification tasks.</li>
+              <li><strong>Critical Patient(s)</strong> — patients flagged as high-priority.</li>
+              <li><strong>Care Gaps</strong> — open care gaps across today's patients.</li>
+              <li><strong>HEDIS</strong> — open HEDIS tasks across today's patients.</li>
+            </ul>
+          </li>
+          <li>Below the summary, Clinical Copilot lists today's appointments in chronological order, with patient details and visit context. A patient flagged as high-priority shows a <strong>Critical</strong> label. An appointment row opens its details.</li>
+          <li>The <strong>HEDIS Composite</strong> card shows how many HEDIS measures are compliant out of the total tracked for the panel, with the number of measures still needed to reach 100%.</li>
+        </ol>
 
-At the top, Clinical Copilot greets the user and shows the date and number of patients scheduled for today. An AI-generated insight highlights what needs attention — for example, open care gaps that can be closed during today's visits, recent ER admissions, or pending medication refills. **Ask Copilot** opens the AI Assistant with this context already in view.
+        <p>At the bottom of the page, the <strong>Ask anything</strong> bar sends a question directly to the AI Assistant. Suggested prompts provide one-click starting points for common questions.</p>
+      </div>
 
-### 2. Today's Summary
+      <figure className="kb-side-shot">
+        <img src={useBaseUrl('/img/today-patients-mockup.png')} alt="Anonymized Figma mockup of the Today page with four numbered UI regions"/>
+        <figcaption>Anonymized Figma mockup. Names and clinical data are fictional.</figcaption>
+      </figure>
+    </div>
 
-**Today's Summary** gives an at-a-glance count of:
+    <h2>Tracking a PCP Group's Performance</h2>
+    <p className="kb-location"><strong>Location:</strong> Patients &gt; Today</p>
 
-- **Clarifications** — open documentation clarification tasks.
-- **Critical Patients** — patients flagged as high priority.
-- **Care Gaps** — open care gaps across today's patients.
-- **HEDIS** — open HEDIS tasks across today's patients.
+    <p>When a PCP Group is selected instead of a single PCP, Today switches to an aggregated Dashboard view for the whole group. Instead of a single day's schedule, the page shows group performance metrics.</p>
 
-### 3. Appointments
+    <p><strong>Summary row</strong> — four scores for the selected group:</p>
+    <ul>
+      <li><strong>Overall Score</strong> — a composite score across key performance metrics.</li>
+      <li><strong>Members</strong> — the total number of unique members managed by the group.</li>
+      <li><strong>Care Gaps Score</strong> — how well the group manages and closes care gaps.</li>
+      <li><strong>Utilization</strong> — how well the group coordinates care and avoids unnecessary utilization.</li>
+    </ul>
 
-Below the summary, Clinical Copilot lists today's appointments in chronological order, with patient details and visit context. A patient flagged as high priority shows a **Critical** label. An appointment row opens its details.
+    <p><strong>Care Gaps Outlook</strong> shows the monthly share of addressed care gaps over the last 12 months.</p>
 
-### 4. HEDIS Composite
+    <p><strong>Care Gaps Execution</strong> summarizes action and confirmation rates for the group, with targets or period-over-period change where applicable.</p>
 
-The **HEDIS Composite** card shows how many HEDIS measures are compliant out of the total tracked for the panel, with the number of measures still needed to reach 100%.
-
-At the bottom of the page, the **Ask anything** bar sends a question directly to the AI Assistant. Suggested prompts provide one-click starting points for common questions.
-
-## Tracking a PCP Group's Performance
-
-**Location:** Patients > Today
-
-When a PCP Group is selected instead of a single PCP, Today switches to an aggregated Dashboard view for the whole group. Instead of a single day's schedule, the page shows group performance metrics.
-
-The summary row contains:
-
-- **Overall Score** — a composite score across key performance metrics.
-- **Members** — the total number of unique members managed by the group.
-- **Care Gaps Score** — how well the group manages and closes care gaps.
-- **Utilization** — how well the group coordinates care and avoids unnecessary utilization.
-
-**Care Gaps Outlook** shows the monthly share of addressed care gaps over the last 12 months.
-
-**Care Gaps Execution** summarizes action and confirmation rates for the group, with targets or period-over-period change where applicable.
-
-**Operational Signals** includes Membership Pulse, HEDIS Composite, and Utilization Follow-up cards for a compact view of panel health.
-
-</article>
+    <p><strong>Operational Signals</strong> includes Membership Pulse, HEDIS Composite, and Utilization Follow-up cards for a compact view of panel health.</p>
+  </article>
 </div>
 </Layout>
