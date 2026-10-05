@@ -17,6 +17,11 @@ const config = {
     }],
   ],
   themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: 'Mikhail Bezrukov',
       items: [
