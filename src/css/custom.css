@@ -118,3 +118,13 @@ main.container{max-width:1120px}
   .overview-grid,.group-grid{grid-template-columns:1fr}
   .group-shot{max-width:560px;justify-self:center}
 }
+
+
+/* Copilot Overview: give the article text more room and let the screenshot sit without a card frame */
+.overview-grid{grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);gap:36px}
+.overview-shot{max-width:500px;justify-self:end}
+.overview-shot img{border:0;border-radius:0;box-shadow:none;background:transparent}
+@media(max-width:900px){
+  .overview-grid{grid-template-columns:1fr}
+  .overview-shot{max-width:520px;justify-self:center}
+}
