@@ -128,3 +128,27 @@ main.container{max-width:1120px}
   .overview-grid{grid-template-columns:1fr}
   .overview-shot{max-width:520px;justify-self:center}
 }
+
+
+/* Neutral product mockups used in the how-to documentation sample */
+.ui-mock{position:relative;border:1px solid #dce4ee;border-radius:16px;background:#f8fafc;overflow:hidden;margin:22px 0 28px;box-shadow:0 8px 28px rgba(20,35,50,.05)}
+.workspace-mock{min-height:360px}
+.ui-topbar{height:58px;background:#fff;border-bottom:1px solid #e7ebf0;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:#315f86}
+.ui-top-actions{display:flex;gap:18px;color:#738195;font-size:13px}
+.ui-canvas{padding:54px 90px 60px;background:#fff;min-height:300px}
+.ui-search{height:48px;border:1px solid #dfe6ee;border-radius:8px;color:#8a96a6;display:flex;align-items:center;padding:0 18px;max-width:720px}
+.ui-metric-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:720px;margin-top:28px}
+.ui-metric{background:#f4f7fb;border-radius:8px;padding:18px 22px;display:flex;flex-direction:column;gap:4px}
+.ui-metric span{color:#617084}.ui-metric strong{color:#2d64c8;font-size:24px}
+.ui-ai-fab{position:absolute;right:30px;bottom:52px;width:64px;height:64px;border:3px solid #a33cff;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;color:#316bdd;box-shadow:0 3px 12px rgba(20,35,50,.12)}
+.chat-mock{display:grid;grid-template-columns:1.6fr .8fr;min-height:430px;background:#fff}
+.ui-table{padding:34px 20px;background:#f8fafc}
+.ui-table-head{font-weight:700;font-size:18px;margin-bottom:16px}.ui-table-row{display:grid;grid-template-columns:1fr 1fr 1.5fr;border-top:1px solid #e4e9ef;padding:14px 0;color:#667487;font-size:13px}
+.ui-chat-panel{margin:18px;border:1px solid #dfe6ee;border-radius:12px;background:#fff;display:flex;flex-direction:column;min-width:0}
+.ui-chat-head{height:64px;border-bottom:1px solid #e7ebf0;display:flex;align-items:center;gap:10px;padding:0 14px}.ui-chat-head strong{margin-right:auto;color:#315f86}
+.num-dot{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#a538f4;color:#fff;font-size:13px;font-weight:800;flex:none}
+.ui-chat-body{flex:1;display:flex;align-items:center;justify-content:center;color:#657286;font-size:20px;text-align:center;padding:40px}
+.ui-chat-input{margin:14px;border:1px solid #dfe6ee;border-radius:10px;min-height:64px;display:flex;align-items:center;gap:10px;padding:10px 12px;color:#8a96a6}
+.kb-warning{border:1px solid #f0c9c9;border-left:3px solid #d35757;background:#fff8f8;border-radius:0 9px 9px 0;padding:13px 16px;margin:18px 0 22px;color:#5b4a4a}
+.kb-warning strong{display:block;color:#a33a3a;margin-bottom:4px}.kb-warning p{margin:0;font-size:14px}
+@media(max-width:800px){.chat-mock{grid-template-columns:1fr}.ui-canvas{padding:34px 24px 120px}.ui-metric-row{grid-template-columns:1fr}.ui-ai-fab{right:22px;bottom:28px}}
