@@ -129,7 +129,7 @@ export default function Home(){
             <div className="contact-card">
               <div className="contact-label">CONTACT ME</div>
               <a href="https://t.me/el_miguel">Telegram · @el_miguel</a>
-              <a href="mailto:Snail7070@gmail.com">Snail7070@gmail.com</a>
+              <a href="mailto:Snail7070@gmail.com">Email · Snail7070@gmail.com</a>
             </div>
             <div className="contact-card">
               <div className="contact-label">TECHNICAL WRITING CHANNEL</div>
