@@ -114,7 +114,6 @@ export default function Home(){
       <section className="section about-section" id="about"><div className="wrap">
         <div className="section-title vertical-title">
           <div><div className="section-kicker">ABOUT</div><h2>Senior Technical Writer</h2></div>
-          <p>I work across product documentation, information architecture, docs-as-code, visual documentation, and AI-assisted documentation workflows.</p>
         </div>
 
         <div className="about-grid">
@@ -122,18 +121,18 @@ export default function Home(){
             <p>I have nearly four years of experience in software product documentation. In my current role I own end-user and internal documentation for eight healthcare IT services, maintain more than 200 Knowledge Base articles, and contribute to release communication across 18 services.</p>
             <p>My day-to-day documentation and stakeholder communication are in English. I combine product research, source verification, writing, publication and maintenance, Git-based delivery, screenshots and diagrams, and collaboration with Product, Engineering, QA, business analysts, data specialists, and domain experts.</p>
             <p>I also build reusable Claude and Claude Code skills and AI-assisted workflows for drafting support, editorial QA, UX copy, screenshot preparation, and documentation maintenance.</p>
-            <Link className="text-link" to="/about">More about my work →</Link>
+            <p>My working stack includes Git, Markdown, Docusaurus, Docker, Jira, Confluence, Figma, Python documentation utilities, Claude / Claude Code, ChatGPT, Gemini, and Cursor. I work in English daily, with Russian as my native language and Spanish at professional proficiency.</p>
           </div>
 
           <div className="contact-panel">
             <div className="contact-card">
               <div className="contact-label">CONTACT ME</div>
-              <a href="https://t.me/el_miguel">Telegram · @el_miguel</a>
-              <a href="mailto:Snail7070@gmail.com">Email · Snail7070@gmail.com</a>
+              <div className="contact-row"><span className="contact-kind">Telegram</span><a href="https://t.me/el_miguel">@el_miguel</a></div>
+              <div className="contact-row"><span className="contact-kind">Email</span><a href="mailto:Snail7070@gmail.com">Snail7070@gmail.com</a></div>
             </div>
             <div className="contact-card">
               <div className="contact-label">TECHNICAL WRITING CHANNEL</div>
-              <a href="https://t.me/mishka_v_kurse">Telegram · @mishka_v_kurse</a>
+              <div className="contact-row"><span className="contact-kind">Telegram</span><a href="https://t.me/mishka_v_kurse">@mishka_v_kurse</a></div>
               <p>Russian-language posts about technical writing, docs-as-code, AI workflows, and documentation practice.</p>
             </div>
             <a className="btn primary about-cv" href={cvUrl}>CV</a>
