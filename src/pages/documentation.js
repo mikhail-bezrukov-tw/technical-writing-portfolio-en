@@ -10,10 +10,10 @@ const samples = [
     text:'A portfolio-safe adaptation of a production Knowledge Base article explaining the Today dashboard, same-day priorities, appointments, HEDIS metrics, and PCP Group performance.'
   },
   {
-    to:'/writing-samples/clinical-copilot-overview',
-    title:'Clinical Copilot Overview',
-    type:'Product overview / navigation reference',
-    text:'A portfolio-safe adaptation of a production overview article introducing the product structure, sidebar navigation, Patient and Practice sections, and installation options.'
+    to:'/writing-samples/ai-assistant-how-to',
+    title:'How to Use the AI Assistant in Workspace',
+    type:'How-to / AI assistant',
+    text:'A portfolio-safe adaptation of a production how-to article covering access, contextual questions, chat controls, keyboard shortcuts, and answer verification.'
   }
 ];
 
