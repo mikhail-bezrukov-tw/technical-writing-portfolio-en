@@ -23,7 +23,7 @@ const config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Portfolio',
+      title: 'Mikhail Bezrukov',
       items: [
         {to:'/documentation', label:'Documentation Samples', position:'right'},
         {to:'/case-studies', label:'Case Studies', position:'right'},
