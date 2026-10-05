@@ -109,3 +109,12 @@ main.container{max-width:1120px}
   .vertical-title{display:block}
   .vertical-title p{margin-top:10px}
 }
+
+.overview-grid{grid-template-columns:minmax(0,1fr) minmax(480px,1fr)}
+.overview-shot{max-width:none;justify-self:stretch}
+.group-grid{grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr)}
+.group-shot{max-width:390px;justify-self:end}
+@media(max-width:900px){
+  .overview-grid,.group-grid{grid-template-columns:1fr}
+  .group-shot{max-width:560px;justify-self:center}
+}
