@@ -3,11 +3,13 @@ title: "How to Use the AI Assistant in Workspace"
 description: "User-facing how-to documentation sample"
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 <div className="docsample-shell">
   <div className="docsample-context">
     <div>
       <span className="docsample-label">USER-FACING HOW-TO SAMPLE</span>
-      <span className="docsample-context-text">Portfolio-safe adaptation of a production Knowledge Base article</span>
+      <span className="docsample-context-text"><strong>Portfolio note:</strong> Adapted from production documentation. Product names, internal links, and identifying details have been replaced or removed. Screenshots are anonymized recreations of the original interface.</span>
     </div>
     <a href="/technical-writing-portfolio-en/documentation">← Documentation Samples</a>
   </div>
@@ -21,20 +23,9 @@ description: "User-facing how-to documentation sample"
 
     <p>The AI Assistant button is the round button at the right edge of the page.</p>
 
-    <div className="ui-mock workspace-mock" aria-label="Neutralized Workspace mockup showing the AI Assistant button">
-      <div className="ui-topbar">
-        <strong>Workspace</strong>
-        <div className="ui-top-actions"><span>Help</span><span>Apps</span><span>JD</span></div>
-      </div>
-      <div className="ui-canvas">
-        <div className="ui-search">Search workspace</div>
-        <div className="ui-metric-row">
-          <div className="ui-metric"><span>Active Patients</span><strong>238,013</strong></div>
-          <div className="ui-metric"><span>Active Providers</span><strong>818</strong></div>
-        </div>
-      </div>
-      <div className="ui-ai-fab">✦</div>
-    </div>
+    <figure className="kb-full-shot">
+      <img src={useBaseUrl('/img/ai-assistant-open.png')} alt="Workspace page with the AI Assistant button highlighted on the right edge"/>
+    </figure>
 
     <p>To open the chat, do one of the following:</p>
     <ul>
@@ -77,19 +68,9 @@ description: "User-facing how-to documentation sample"
       <p>Chats you start in Workspace are saved to your AI Assistant chat history.</p>
     </div>
 
-    <div className="ui-mock chat-mock" aria-label="Neutralized AI Assistant chat panel with numbered controls">
-      <div className="ui-table">
-        <div className="ui-table-head">Claims</div>
-        <div className="ui-table-row"><span>Patient A</span><span>09-11-2026</span><span>Provider Group</span></div>
-        <div className="ui-table-row"><span>Patient B</span><span>09-11-2026</span><span>Provider Group</span></div>
-        <div className="ui-table-row"><span>Patient C</span><span>09-10-2026</span><span>Provider Group</span></div>
-      </div>
-      <div className="ui-chat-panel">
-        <div className="ui-chat-head"><span className="num-dot">1</span><span className="num-dot">2</span><strong>AI Assistant</strong><span className="num-dot">3</span><span className="num-dot">4</span></div>
-        <div className="ui-chat-body">Good afternoon, John Doe</div>
-        <div className="ui-chat-input"><span className="num-dot">5</span><span>Message AI Assistant</span><span className="num-dot">6</span><span className="num-dot">7</span></div>
-      </div>
-    </div>
+    <figure className="kb-full-shot">
+      <img src={useBaseUrl('/img/ai-assistant-chat.png')} alt="AI Assistant chat panel with numbered controls over a Workspace data table"/>
+    </figure>
 
     <p>The controls are described below; the numbers match the numbers in the mockup.</p>
 
