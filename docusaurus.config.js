@@ -31,10 +31,6 @@ const config = {
         {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'CV', position:'right'},
       ],
     },
-    footer: {
-      style:'light',
-      copyright:'Mikhail Bezrukov · Senior Technical Writer',
-    },
   },
 };
 module.exports = config;
