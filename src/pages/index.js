@@ -85,7 +85,12 @@ export default function Home(){
         <div className="chips">{['Product documentation','English C1 · Russian native','Visual documentation','Docs-as-code','AI-assisted workflows','Release communication'].map(x=><span className="chip" key={x}>{x}</span>)}</div>
         <div className="cta"><Link className="btn primary" to="/documentation">View documentation samples</Link><Link className="btn" to="/case-studies">Explore case studies</Link><a className="btn" href={cvUrl}>CV</a></div>
         <div className="fitline"><strong>Software product documentation since 2022.</strong> Day-to-day documentation and collaboration in English; product research across Product, Engineering, QA, business analysis, and domain teams.</div>
-        <div className="stats"><div className="stat"><strong>200+</strong><span>Knowledge Base articles</span></div><div className="stat"><strong>8</strong><span>services under documentation ownership</span></div><div className="stat"><strong>18</strong><span>services covered by release communications</span></div><div className="stat"><strong>50+</strong><span>docs-as-code articles maintained</span></div></div>
+        <div className="stats">
+          <div className="stat"><strong>200+</strong><span>Knowledge Base articles maintained</span></div>
+          <div className="stat"><strong>8 services</strong><span>end-to-end documentation ownership</span></div>
+          <div className="stat"><strong>18 services</strong><span>release notes coverage across the wider product ecosystem</span></div>
+          <div className="stat"><strong>Nearly 4 years</strong><span>in software product documentation</span></div>
+        </div>
       </div></section>
 
       <section className="section work-section doc-section"><div className="wrap">
