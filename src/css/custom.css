@@ -179,3 +179,6 @@ main.container{max-width:1120px}
 .contact-row{display:flex;align-items:baseline;gap:10px;margin:5px 0 8px;flex-wrap:wrap}
 .contact-kind{font-size:12px;font-weight:600;color:var(--muted);min-width:58px}
 .contact-row a{display:inline;margin:0;font-size:17px;font-weight:750;color:#1f5681}
+
+/* About navigates to the landing-page section, so do not show it as an external link */
+.navbar-about-link svg{display:none}
