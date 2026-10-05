@@ -1,0 +1,188 @@
+import Layout from '@theme/Layout';
+
+<Layout title="When Documentation Rules Belong in Code" description="How recurring documentation review comments became a small Python linter—and why not every finding should block a change.">
+<div className="wrap">
+<header className="casehead">
+<div className="eyebrow">Docs-as-code · Python · Quality automation</div>
+<h1>When Documentation Rules Belong in Code</h1>
+<p className="lede">How recurring review comments became a small Python linter—and why automating documentation quality does not mean automating editorial judgment.</p>
+</header>
+<article className="content">
+<div className="sample-note">Anonymized production case. Internal URLs, repository names, tickets, and product identifiers are omitted. The code excerpt preserves the logic of the real rule.</div>
+
+<div className="quickfacts"><div><b>Context</b><span>Product Knowledge Base in a docs-as-code workflow</span></div><div><b>My role</b><span>Wrote the Python linter and added it to AI-assisted documentation checks</span></div><div><b>Scope</b><span>13 rules · Python standard library · ERROR / WARN severities</span></div></div>
+
+## When a review comment stops being editorial work
+
+Documentation teams quickly accumulate small rules.
+
+Do not leave `.md` in internal links. Do not format a warning as an ordinary blockquote. Make sure an image actually exists. Avoid imperative `Click` in content types where the page should describe behavior instead of giving a procedure.
+
+Individually, these rules look too small to justify a tool. It is easy enough to catch them during review.
+
+The problem starts when the same comment appears again and again. At that point part of the review is no longer editorial judgment. It is a repeated check with a reproducible answer.
+
+**If a person keeps correcting the same thing and correctness can be determined formally, it may already be a job for code.**
+
+## From review comments to linter rules
+
+The resulting linter is a single Python file built on the standard library. It currently contains thirteen rules: five return `ERROR`, eight return `WARN`.
+
+| Group | Example check | Severity |
+|---|---|---|
+| Images | Does the file exist? Is the path valid? | `ERROR` |
+| Links | Does the target page exist? Was `.md` left in the link? | `ERROR` |
+| Formatting | Does a normal blockquote look like a callout? | `WARN` |
+| Voice | Is `you` or imperative `Click` used where it is discouraged? | `WARN` |
+
+The number of rules matters less than the boundary. The linter does not decide whether an article is good, whether its information architecture is clear, or whether a section truly belongs to Tutorial, How-to, Reference, or Explanation.
+
+It answers questions for which the result can be reproduced.
+
+## Why not every finding should fail the check
+
+A broken image path is almost certainly a defect. If the file does not exist, the published page will be broken. Returning an `ERROR` and a non-zero exit code is appropriate.
+
+Style rules are different. The word `you` may be discouraged in a reference article, but the specific context can still justify it. Blocking the entire workflow on every stylistic match is a good way to create a tool that people learn to bypass.
+
+So the linter has two levels:
+
+```text
+ERROR → the system knows the result is wrong
+WARN  → the system knows this place needs review
+```
+
+An `ERROR` must be fixed. A `WARN` preserves a human decision: change the text or keep the exception deliberately.
+
+A useful linter does not have to catch everything. Its strict signals have to be trustworthy.
+
+## One rule from Markdown to output
+
+Voice rules are an easy place to create false positives. Suppose we want to flag imperative `Click` in reference content. A naive search across the raw Markdown will also flag code examples:
+
+```text
+Run the command:
+Click
+
+Expected output: ...
+```
+
+For the reader, that occurrence is code—not an instruction to click something. The linter therefore prepares the text before applying the rule: it skips frontmatter, fenced code blocks, and HTML comments, and keeps a prose version with simple inline-code spans removed.
+
+```text
+Markdown line
+   ↓
+raw ─────────→ links / images
+   ↓
+remove simple inline code
+   ↓
+prose ───────→ voice / style rules
+```
+
+Here is a shortened excerpt from the real implementation:
+
+```python
+RE_CLICK = re.compile(
+    r"(^|[.!?:]\\s+|^\\s*(?:\\d+\\.|[-*+])\\s+)"
+    r"(Click|Double-click|Right-click)\\b"
+)
+RE_INLINE_CODE = re.compile(r"`[^`]*`")
+
+# article_lines(...)
+yield n + 1, raw, RE_INLINE_CODE.sub("", raw)
+
+# lint_file(...)
+body = RE_URL.sub("", prose)
+
+if atype in ("reference", "explanation"):
+    if RE_CLICK.search(body.lstrip("> ")):
+        findings.append(Finding(
+            rel,
+            n,
+            "WARN",
+            "click",
+            f'imperative "Click" in a {atype} article; '
+            'say what the element does ("The name links to…")',
+            source,
+        ))
+```
+
+This is not a general-purpose Markdown parser. It is a narrow heuristic designed for one rule. That is intentional: the implementation should be no more sophisticated than the decision it needs to support.
+
+A synthetic test file can contain both cases:
+
+```text
+Click Save to continue.
+
+Use `Click` as the command name in this example.
+```
+
+The first line produces a warning. The inline-code occurrence does not.
+
+```text
+reference-demo.md:7  WARN  click  imperative "Click" in a reference article
+
+1 article(s), 0 error(s), 1 warning(s)
+```
+
+The command still exits successfully because a `WARN` is a review signal, not a proven defect.
+
+## Content type changes the rule
+
+The same language can be correct in one documentation type and wrong in another. Imperative instructions are normal in a how-to. They are much less natural in reference or explanation content.
+
+The script uses a cheap signal—the filename prefix—to infer common types, and allows the type to be overridden explicitly with `--type`. It does not attempt to solve semantic classification itself.
+
+That limitation is visible in the output. If the inferred type is wrong, a writer can correct it instead of accepting an opaque automated decision.
+
+## Detecting is safer than deleting
+
+The linter can also find images that are not referenced by Markdown. That sounds like a perfect candidate for automatic cleanup.
+
+It is not.
+
+A file can belong to another pull request or be referenced by frontend code, configuration, or a landing page. An apparently unused image is therefore a `WARN`. The tool can expand the search and surface the candidate, but deletion remains a deliberate human action.
+
+**Automating detection is often safer than automating an irreversible action.**
+
+## How it fits into the documentation workflow
+
+The linter is a mechanical step inside our AI-assisted documentation workflows. Claude Code is instructed to run it when checking an article, and the screenshot workflow runs the same script after preparing and inserting an image.
+
+The output format is deliberately plain:
+
+```text
+path:line  SEVERITY  rule  message  | excerpt
+```
+
+The linter is not currently a standalone CI gate, and it does not yet have a complete unit/integration/evaluation fixture suite. Those are real limitations, not details to hide. Without regression tests it is harder to change one heuristic confidently without affecting another.
+
+## The gaps are useful information too
+
+Once the linter existed, the unautomated areas became easier to see. For example, a previous bulk issue had stored a `keywords` frontmatter field as a string instead of an array across dozens of articles, but the current script does not validate frontmatter at all.
+
+Other known limitations include:
+
+- the `Click` rule does not catch every possible sentence position;
+- internal links are checked for target pages, not fragment anchors after `#`;
+- filename-based content-type inference can be wrong;
+- terminology remains outside the linter;
+- the script is not wired directly to CI or Git hooks;
+- a dedicated automated regression suite is still future work.
+
+Making those limits explicit is part of making the automation trustworthy.
+
+## What remains with the writer
+
+| Code | Human / LLM |
+|---|---|
+| Does the image file exist? | Does the article need that image? |
+| Does the linked page exist? | Is it the right link for this context? |
+| Does a formal pattern match? | Is the wording justified here? |
+| Does the text violate a mechanical rule? | Is the text actually clear to the reader? |
+
+That is the criterion I now use for documentation automation: not **can I write a check?**, but **can code return a reliable enough verdict that a person should no longer have to make the same decision every time?**
+
+If the answer is yes, the rule can move into the linter. If not, automation should surface the place that needs attention without pretending to be more certain than it is.
+
+</article></div></Layout>
