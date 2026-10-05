@@ -198,3 +198,88 @@ main.container{max-width:1120px}
   .navbar-sidebar__items > .navbar-sidebar__item:nth-child(2){display:none}
   .navbar-sidebar__items > .navbar-sidebar__item:first-child{width:100%}
 }
+
+
+/* Simple custom navbar: avoids Docusaurus mobile-sidebar state issues */
+.portfolio-navbar{
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--line);
+  box-shadow:none;
+  padding:0;
+}
+.portfolio-navbar__inner{
+  width:100%;
+  min-height:var(--ifm-navbar-height);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:0 var(--ifm-navbar-padding-horizontal);
+}
+.portfolio-navbar__brand{
+  color:var(--ink);
+  text-decoration:none;
+  font-weight:800;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+.portfolio-navbar__desktop{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+.portfolio-navbar__desktop a{
+  color:#495668;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:500;
+}
+.portfolio-navbar__desktop a:hover{color:var(--accent)}
+.portfolio-navbar__toggle{
+  display:none;
+  width:40px;
+  height:40px;
+  border:0;
+  background:transparent;
+  padding:8px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+}
+.portfolio-navbar__toggle span{
+  display:block;
+  width:22px;
+  height:2px;
+  border-radius:2px;
+  background:#465467;
+}
+.portfolio-navbar__mobile{display:none}
+
+@media(max-width:996px){
+  .portfolio-navbar__desktop{display:none}
+  .portfolio-navbar__toggle{display:flex}
+  .portfolio-navbar__mobile{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    padding:8px 14px 14px;
+    background:#fff;
+    border-top:1px solid #edf1f5;
+    box-shadow:0 10px 24px rgba(20,35,50,.08);
+  }
+  .portfolio-navbar__mobile a{
+    display:block;
+    padding:12px 10px;
+    border-radius:9px;
+    color:var(--ink);
+    text-decoration:none;
+    font-size:17px;
+    font-weight:650;
+  }
+  .portfolio-navbar__mobile a:hover{
+    background:#f4f7fa;
+    color:var(--accent);
+  }
+}
