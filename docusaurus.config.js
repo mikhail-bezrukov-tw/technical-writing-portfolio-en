@@ -23,11 +23,11 @@ const config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Mikhail Bezrukov',
+      title: 'Portfolio',
       items: [
         {to:'/documentation', label:'Documentation Samples', position:'right'},
         {to:'/case-studies', label:'Case Studies', position:'right'},
-        {to:'/about', label:'About', position:'right'},
+        {href:'/technical-writing-portfolio-en/#about', label:'About', position:'right'},
         {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'CV', position:'right'},
       ],
     },
