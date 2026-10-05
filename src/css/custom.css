@@ -189,3 +189,12 @@ main.container{max-width:1120px}
 .mobile-portfolio-menu .menu__list-item{margin:2px 0}
 .mobile-portfolio-menu .menu__link{font-size:18px;font-weight:650;padding:12px 14px;border-radius:10px;color:var(--ink)}
 .mobile-portfolio-menu .menu__link:hover{background:#f3f6f9;color:var(--accent)}
+
+
+/* This portfolio has no secondary mobile menu. Keep the primary navigation visible even if
+   Docusaurus retains a secondary-menu state between routes. */
+@media (max-width:996px){
+  .navbar-sidebar__items--show-secondary{transform:translateZ(0)!important}
+  .navbar-sidebar__items > .navbar-sidebar__item:nth-child(2){display:none}
+  .navbar-sidebar__items > .navbar-sidebar__item:first-child{width:100%}
+}
