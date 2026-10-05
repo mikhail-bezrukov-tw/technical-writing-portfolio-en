@@ -1,61 +1,88 @@
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-<Layout title="Clinical Copilot Overview" description="Product overview / navigation reference">
-<div className="wrap">
-<header className="casehead"><div className="eyebrow">Documentation sample</div><h1>Clinical Copilot Overview</h1><p className="meta">Product overview / navigation reference</p></header>
-<article className="content article">
-<div className="sample-note">Portfolio-safe copy based on production documentation. Product naming, internal links, screenshots, and sensitive identifiers have been removed.</div>
+<Layout title="Clinical Copilot Overview" description="User-facing product documentation sample">
+<div className="docsample-shell">
+  <div className="docsample-context">
+    <div>
+      <span className="docsample-label">USER-FACING DOCUMENTATION SAMPLE</span>
+      <span className="docsample-context-text">Portfolio-safe adaptation of a production Knowledge Base article</span>
+    </div>
+    <Link to="/documentation">← Documentation Samples</Link>
+  </div>
 
-A portfolio-safe version of a production product overview. Product naming and internal Knowledge Base links have been anonymized or removed.
+  <article className="kb-article">
+    <h1>Clinical Copilot Overview</h1>
 
-Clinical Copilot is an EMR-embedded plugin that surfaces AI-assisted patient insights, care-gap tracking, and scheduling tools directly inside the clinical workflow.
+    <div className="kb-note">
+      <strong>Note</strong>
+      <p>Clinical Copilot's interface has evolved over time. This portfolio version focuses on the product structure and navigation model rather than reproducing internal release-history links.</p>
+    </div>
 
-The plugin is organized into two sections, selectable from the sidebar: **Patient** (patient-centered tools scoped to the currently open record) and **Practice** (panel-wide tools spanning all patients).
+    <div className="kb-two-column overview-grid">
+      <div className="kb-copy">
+        <p>Clinical Copilot is an EMR-embedded plugin that surfaces AI-assisted patient insights, care-gap tracking, and scheduling tools directly inside the clinical workflow.</p>
 
-## Sidebar
+        <p>The plugin is organized into two sections, selectable from the sidebar: <strong>Patient</strong> (patient-centered tools scoped to the currently open record) and <strong>Practice</strong> (panel-wide tools spanning all patients).</p>
 
-The sidebar is the same in both sections except for the middle group of tabs, which changes when switching between **Patient** and **Practice**.
+        <h2>Sidebar</h2>
 
-The top of the sidebar is the same in both sections:
+        <p>The sidebar is the same in both sections except for the middle group of tabs, which changes when switching between <strong>Patient</strong> and <strong>Practice</strong>.</p>
 
-- **Patient / Practice switch** — switches the sidebar between the Patient and Practice sections.
-- **Patient Search** — finds a patient to open.
-- **AI Assistant** — opens the AI chat.
+        <p>The top of the sidebar is the same in both sections:</p>
+        <ul>
+          <li><strong>Patient / Practice switch</strong> — switches the sidebar between the Patient and Practice sections.</li>
+          <li><strong>Patient Search</strong> — finds a patient to open.</li>
+          <li><strong>AI Assistant</strong> — opens the AI chat.</li>
+        </ul>
+      </div>
 
-## Patient Section
+      <figure className="kb-side-shot overview-shot">
+        <img src={useBaseUrl('/img/today-patients-mockup.png')} alt="Anonymized Figma mockup showing the Clinical Copilot sidebar and Today page"/>
+        <figcaption>Anonymized Figma mockup used here to show the navigation context.</figcaption>
+      </figure>
+    </div>
 
-- **Today** — the landing view: a personalized greeting, an AI-generated insight banner with same-day opportunities, summary counts, the day's schedule, and a HEDIS Composite compliance ring. If a PCP Group is selected instead of an individual provider, Today switches to a Dashboard view aggregating the same metrics across the group.
-- **Care Gaps** — the patient's open and closed HEDIS/quality gaps, with an AI-generated Patient Summary and links to relevant Treatment Notes.
-- **Patient View** — a consolidated snapshot of the patient: Care Gaps, Schedule, HEDIS, and Admissions, plus a Patient Summary banner when available.
-- **HEDIS** — the patient's HEDIS Part C and Part D measures, plus exclusions where applicable.
-- **Therapeutic Optimizations** — AI-flagged medication opportunities for the patient.
-- **Voice Notes** — records a voice note for a visit.
-- **Connect** — the patient's outreach in one place: SMS, calls, messages, and mailed letters.
-- **Clarifications** — the queue of open documentation clarification tasks.
+    <div className="kb-columns">
+      <section>
+        <h2>Patient Section</h2>
+        <ul>
+          <li><strong>Today</strong> — the landing view: a personalized greeting, an AI-generated insight banner with same-day opportunities, summary counts, the day's schedule, and a HEDIS Composite compliance ring. If a PCP Group is selected instead of an individual provider, Today switches to a Dashboard view aggregating the same metrics across the group.</li>
+          <li><strong>Care Gaps</strong> — the patient's open and closed HEDIS/quality gaps, with an AI-generated Patient Summary and links to relevant Treatment Notes.</li>
+          <li><strong>Patient View</strong> — a consolidated snapshot of the patient: Care Gaps, Schedule, HEDIS, and Admissions, plus a Patient Summary banner when available.</li>
+          <li><strong>HEDIS</strong> — the patient's HEDIS Part C and Part D measures, plus exclusions where applicable.</li>
+          <li><strong>Therapeutic Optimizations</strong> — AI-flagged medication opportunities for the patient.</li>
+          <li><strong>Voice Notes</strong> — records a voice note for a visit.</li>
+          <li><strong>Connect</strong> — the patient's outreach in one place: SMS, calls, messages, and mailed letters.</li>
+          <li><strong>Clarifications</strong> — the queue of open documentation clarification tasks.</li>
+        </ul>
+      </section>
 
-## Practice Section
+      <section>
+        <h2>Practice Section</h2>
+        <ul>
+          <li><strong>PCPs' Calendar</strong> — a calendar view of appointments across the practice's providers.</li>
+          <li><strong>All Patients</strong> — every patient in the panel, with filtering, sorting, and search.</li>
+          <li><strong>Patient Scheduling</strong> — patients with open scheduling-related tasks.</li>
+          <li><strong>HEDIS</strong> — practice-wide HEDIS measures and outstanding tasks across the panel.</li>
+          <li><strong>Admissions</strong> — recent hospital admissions and discharge events across the panel.</li>
+          <li><strong>Connect</strong> — automated outreach tasks with status and outcome tracking.</li>
+          <li><strong>Eligibility Check</strong> — real-time insurance coverage verification for prospective patients.</li>
+          <li><strong>Clarifications</strong> — the queue of open documentation clarification tasks.</li>
+        </ul>
+      </section>
+    </div>
 
-- **PCPs' Calendar** — a calendar view of appointments across the practice's providers.
-- **All Patients** — every patient in the panel, with filtering, sorting, and search.
-- **Patient Scheduling** — patients with open scheduling-related tasks.
-- **HEDIS** — practice-wide HEDIS measures and outstanding tasks across the panel.
-- **Admissions** — recent hospital admissions and discharge events across the panel.
-- **Connect** — automated outreach tasks with status and outcome tracking.
-- **Eligibility Check** — real-time insurance coverage verification for prospective patients.
-- **Clarifications** — the queue of open documentation clarification tasks.
+    <h2>Bottom of the Sidebar</h2>
+    <p>The bottom of the sidebar contains supporting tools, the user menu, and Settings. Available settings depend on what is enabled for the organization.</p>
 
-## Bottom of the Sidebar
-
-The bottom of the sidebar contains supporting tools, the user menu, and Settings. Available settings depend on what is enabled for the organization.
-
-## Installation
-
-Clinical Copilot is available in three forms:
-
-- **Browser extension** — runs alongside a supported EMR.
-- **Desktop application** — used when working outside an active EMR session.
-- **Standalone web application** — runs in the browser without an EMR open.
-
-</article>
+    <h2>Installation</h2>
+    <ul>
+      <li><strong>Browser extension</strong> — runs alongside a supported EMR.</li>
+      <li><strong>Desktop application</strong> — used when working outside an active EMR session.</li>
+      <li><strong>Standalone web application</strong> — runs in the browser without an EMR open.</li>
+    </ul>
+  </article>
 </div>
 </Layout>
