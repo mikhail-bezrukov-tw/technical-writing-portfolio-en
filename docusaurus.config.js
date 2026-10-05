@@ -28,7 +28,7 @@ const config = {
         {to:'/documentation', label:'Documentation Samples', position:'right'},
         {to:'/case-studies', label:'Case Studies', position:'right'},
         {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/#about', label:'About', position:'right', className:'navbar-about-link'},
-        {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'CV', position:'right'},
+        {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf?v=20261005-1758', label:'CV', position:'right'},
       ],
     },
   },
