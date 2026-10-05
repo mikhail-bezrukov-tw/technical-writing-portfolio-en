@@ -1,0 +1,57 @@
+import Layout from '@theme/Layout';
+
+<Layout title="Standardizing Release Communications Across 18 Services" description="Turning distributed release information into searchable, user-facing release notes in the Knowledge Base.">
+<div className="wrap">
+<header className="casehead">
+<div className="eyebrow">Case 01 · Release documentation · Product communication</div>
+<h1>Standardizing Release Communications Across 18 Services</h1>
+<p className="lede">Turning distributed release information into searchable, user-facing release notes in the Knowledge Base.</p>
+</header>
+<article className="content">
+<div className="sample-note">Anonymized production work for a U.S. healthcare IT product. Company, product, customer, and internal ticket identifiers are omitted.</div>
+
+## Context
+
+Release information was distributed across Jira and multiple product teams, while customer-facing release notes were assembled separately in slide decks. Across 18 services, released tickets still had to be reviewed for user relevance, checked against source information, and rewritten from implementation detail into useful product updates.
+
+## Constraints
+
+The automated release feed was only a candidate pool: not every resolved ticket deserved a release note. Some changes were internal-only, some lacked enough source detail, and some required checking permissions or UI behavior before publication.
+
+## My role
+
+The release feed already existed. I owned the editorial layer around it: selecting candidate changes, verifying the source material, rewriting implementation detail into user-facing updates, preparing visuals, and publishing the final release notes. AI-assisted triage and drafting supported parts of the workflow but did not determine what was published.
+
+## Approach
+
+I triaged each candidate into three practical groups:
+
+- **Include:** meaningful user-visible behavior or workflow impact.
+- **Verify:** scope, permissions, UI behavior, or source details required confirmation.
+- **Exclude:** internal technical work, invisible fixes, or placeholder updates with no useful user-facing message.
+
+For selected items, I compared the release feed with Jira, checked the underlying behavior, then rewrote the change around the user task rather than the implementation.
+
+<div className="proof"><h3>From source detail to user-facing release note</h3><div className="flowgrid"><div className="panel"><b>Sanitized Jira extract</b><div className="code">{`Feature: Upcoming Appointments tab
+Statuses: Scheduled / In Progress
+Fields: Provider, Date, Time
+Hover: Visit Type, Purpose, Location
+Permission: scheduling access required`}</div></div><div className="arrow">→</div><div className="panel"><b>Published release note</b><p><strong>New upcoming appointments tab in Patient Details</strong><br/><em>See a patient's scheduled visits without leaving the page</em></p><p>Patient Details now surfaces a patient's upcoming visits directly in the modal. The new tab lists scheduled and in-progress appointments in date order, with additional visit information on hover. Users with scheduling permissions can also book a new visit from the same view.</p></div></div></div>
+
+## Technical implementation
+
+The workflow combines Jira, a release-management feed, docs-as-code publication, and a reusable screenshot process. For visuals, I use a Claude Code skill with Python utilities to locate the current UI, measure screenshot bounds, annotate the relevant control, and run a visual self-check before publication.
+
+## Collaboration
+
+The source information came from product and engineering work across multiple services. I used Jira and product context to resolve ambiguous changes and kept editorial selection and final wording on the documentation side.
+
+## Result
+
+Release notes moved from separately assembled slide decks into the searchable Knowledge Base, with one editorial process supporting release communication across 18 services. The automated feed supplied candidate changes; editorial selection, source verification, final wording, visuals, and publication remained my responsibility.
+
+## What I learned
+
+Candidate collection can be automated without automating editorial judgment. The useful boundary is to automate discovery and repetitive preparation while keeping relevance, factual verification, and publication decisions explicit.
+
+</article></div></Layout>
