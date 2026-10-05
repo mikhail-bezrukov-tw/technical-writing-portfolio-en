@@ -1,0 +1,109 @@
+import Layout from '@theme/Layout';
+
+<Layout title="Let the Model Decide, Let the Script Verify" description="A reproducible AI-assisted screenshot workflow built around semantic decisions and deterministic Python checks.">
+<div className="wrap">
+<header className="casehead">
+<div className="eyebrow">AI-assisted workflow · Screenshots · Python</div>
+<h1>Let the Model Decide, Let the Script Verify</h1>
+<p className="lede">How a screenshot workflow evolved from a detailed Claude Code prompt into an orchestration layer where the model makes semantic decisions and ordinary code has the final say on measurable criteria.</p>
+</header>
+<article className="content">
+<div className="sample-note">Anonymized production case. Product screens and internal repository identifiers are omitted; the evaluation example uses a synthetic interface.</div>
+
+## The problem was not whether the model could do the job
+
+Preparing screenshots for documentation sounds like an unusually good fit for an AI agent. Give it an interface image, tell it which element matters, ask it to draw a highlight according to the team's visual style, and save the result.
+
+In one early evaluation I gave Claude a synthetic screenshot with two adjacent buttons and asked it to highlight the correct one. Even without a dedicated workflow, the agent wrote a small pixel scanner, found the element boundaries, and produced an annotation.
+
+Technically, it solved the task.
+
+Then it chose a purple color, a 5 px padding, and a 10 px corner radius as judgment calls. Every choice looked reasonable. None of them came from our rules.
+
+With the formalized workflow, the same scenario produced the target 6 px padding on all four sides and passed a separate check.
+
+**A model being able to complete a task is not the same thing as the process being reproducible.**
+
+## Splitting judgment from verification
+
+The tempting fix was to keep making the prompt longer: use this color, keep this padding, use this radius, remember to check the result. That works until the prompt becomes a fragile collection of instructions that the same probabilistic system is also expected to verify.
+
+Instead, the workflow gradually split into two layers.
+
+```text
+Claude
+  ↓
+semantic decision
+  ↓
+Python
+  ↓
+measurement / rendering
+  ↓
+independent check
+  ↓
+OK / FAIL
+```
+
+Claude still handles questions that require context: which source is appropriate, which UI element the article refers to, the approximate search region, whether an arrow or numbered badges are useful, and which clean source should be used when an existing screenshot needs repair.
+
+Python handles the parts with an unambiguous answer: pixel measurements, padding, rendering, frame spacing, and pass/fail checks.
+
+## Why the checker re-measures the original
+
+A particularly important design choice was to avoid validating a measurement with the same measurement that produced it.
+
+The checker measures the element again on the original image and compares that result with the rectangle that was drawn. It can verify a target padding and tolerance and returns `OK` or `FAIL`; a failure exits non-zero.
+
+That means the agent is not allowed to inspect a nearly correct screenshot and decide that it is "close enough." It has to adjust the input and run the operation again.
+
+## Why Pillow replaced headless Chrome
+
+The first rendering approach used HTML and headless Chrome. In practice, device-pixel-ratio behavior could produce a 2× coordinate mismatch, and the browser added a dependency that the task did not need.
+
+The workflow moved to Pillow. The output image keeps the same pixel dimensions as the input, and the geometry lives in one coordinate system.
+
+That change also made small implementation details explicit. For example, Pillow draws a rectangle outline outward from its coordinates, so the renderer compensates by half the stroke width to keep the visible frame aligned with what the checker expects.
+
+## When two highlights are too close
+
+A second deterministic check handles adjacent frames. The script calculates the available gap after padding and produces one of three states:
+
+```python
+if raw_gap - 2 * pad >= min_gap:
+    # OK
+    ...
+elif a smaller allowed pad still preserves min_gap:
+    # SHRINK
+    ...
+else:
+    # MERGE
+    ...
+```
+
+`OK`, `SHRINK`, and `MERGE` are not suggestions from the model. They are consequences of measurable geometry. Claude can decide what to do next, but it cannot reinterpret the verdict.
+
+## Repairing an annotated screenshot
+
+The workflow also needed a safe way to remove an obsolete annotation without painting over the UI. A clean-plate utility can retrieve another version of the image from Git, search for the matching area, verify alignment using surrounding content, and patch the region only when the match is strong enough.
+
+This is deliberately conservative. It searches for translation, not arbitrary scaling, and refuses flat regions where there is not enough visual content to establish a reliable match. When there is no trustworthy clean source, the correct fallback is to recapture the screenshot.
+
+## What remains a human decision
+
+Deterministic checks do not make the whole workflow deterministic. Claude can still choose a poor source or approximate search region. A screenshot can be technically valid and still be unnecessary or confusing. A human still decides whether the visual actually helps the reader.
+
+The useful boundary is narrower:
+
+| Model / human judgment | Deterministic code |
+|---|---|
+| Which screen is relevant? | What are the exact element bounds? |
+| Does the article need an arrow or numbered badges? | Does the annotation meet padding and spacing rules? |
+| Is this screenshot useful to the reader? | Does the operation pass its measurable checks? |
+
+## Result
+
+I stopped thinking about the workflow as a very detailed prompt. It is closer to an orchestration layer: the model interprets context, while small Python utilities measure, render, and return hard verdicts wherever the criterion can be checked objectively.
+
+That distinction made the workflow more useful than simply adding more instructions to the model—and it is the same principle I now look for in other AI-assisted documentation tasks.
+
+</article></div></Layout>
