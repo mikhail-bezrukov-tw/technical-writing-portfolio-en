@@ -5,7 +5,7 @@ export default function NavbarMobileSidebarPrimaryMenu() {
   const homeUrl = useBaseUrl('/');
   const documentationUrl = useBaseUrl('/documentation');
   const caseStudiesUrl = useBaseUrl('/case-studies');
-  const cvUrl = useBaseUrl('/mikhail-bezrukov-cv.pdf');
+  const cvUrl = useBaseUrl('/mikhail-bezrukov-cv.pdf?v=20261005-1758');
 
   return (
     <ul className="menu__list mobile-portfolio-menu">
