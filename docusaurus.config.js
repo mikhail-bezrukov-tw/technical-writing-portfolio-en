@@ -20,11 +20,10 @@ const config = {
     navbar: {
       title: 'Mikhail Bezrukov',
       items: [
-        {to:'/writing-samples/today-patients', label:'Product sample', position:'right'},
-        {to:'/case-studies/ai-screenshot-workflow', label:'AI workflow', position:'right'},
-        {to:'/case-studies/docs-linter', label:'Docs tooling', position:'right'},
+        {to:'/documentation', label:'Documentation Samples', position:'right'},
+        {to:'/case-studies', label:'Case Studies', position:'right'},
         {to:'/about', label:'About', position:'right'},
-        {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'Resume', position:'right'},
+        {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'CV', position:'right'},
       ],
     },
     footer: {
