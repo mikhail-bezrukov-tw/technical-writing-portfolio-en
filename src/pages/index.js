@@ -11,11 +11,11 @@ const documentation = [
     tags: ['Product documentation', 'UI guidance', 'Visual documentation']
   },
   {
-    to: '/writing-samples/clinical-copilot-overview',
-    title: 'Clinical Copilot Overview',
-    kicker: 'User-facing Knowledge Base article',
-    summary: 'A product-overview article that introduces the navigation model, Patient and Practice areas, and the main tools available in the product.',
-    tags: ['Product overview', 'Navigation', 'Information architecture']
+    to: '/writing-samples/ai-assistant-how-to',
+    title: 'How to Use the AI Assistant in Workspace',
+    kicker: 'User-facing how-to article',
+    summary: 'A procedural article covering how to open an embedded AI assistant, work with context-aware chat, use controls and shortcuts, and verify answers.',
+    tags: ['How-to', 'AI feature', 'Procedural writing']
   },
 ];
 
