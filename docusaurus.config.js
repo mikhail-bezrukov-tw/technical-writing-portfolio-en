@@ -8,7 +8,7 @@ const config = {
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: { hooks: { onBrokenMarkdownLinks: 'warn' } },
   presets: [
     ['classic', {
       docs: false,
@@ -27,7 +27,7 @@ const config = {
       items: [
         {to:'/documentation', label:'Documentation Samples', position:'right'},
         {to:'/case-studies', label:'Case Studies', position:'right'},
-        {href:'/technical-writing-portfolio-en/#about', label:'About', position:'right'},
+        {to:'/#about', label:'About', position:'right'},
         {href:'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf', label:'CV', position:'right'},
       ],
     },
