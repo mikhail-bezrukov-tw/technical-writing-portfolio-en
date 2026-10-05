@@ -1,0 +1,59 @@
+import Layout from '@theme/Layout';
+
+<Layout title="Documentation Delivery in a Docs-as-Code Environment" description="From manual Git operations to documentation-specific delivery commands with review and repository safeguards.">
+<div className="wrap">
+<header className="casehead">
+<div className="eyebrow">Case 04 · Docs-as-code · Repository delivery</div>
+<h1>Documentation Delivery in a Docs-as-Code Environment</h1>
+<p className="lede">From manual Git operations to documentation-specific delivery commands with review and repository safeguards.</p>
+</header>
+<article className="content">
+<div className="sample-note">Anonymized production work for a U.S. healthcare IT product. Company, product, customer, and internal ticket identifiers are omitted.</div>
+
+## Context
+
+Our Knowledge Base is maintained as a software project rather than edited directly in a CMS. Documentation lives in Markdown alongside configuration and media assets. Changes move through Git branches and pull requests before reaching staging and, later, production.
+
+## Constraints
+
+The repository, CI checks, staging environment, and GitHub/Jira infrastructure already existed. The documentation-side process still needed to be safe for writers: a small wording fix should not carry the same review cost as a domain-sensitive article, and automated Git operations must stop when the working set escapes documentation boundaries.
+
+## My role
+
+I first documented the manual repository setup and daily process for technical writers: Git and SSH configuration, local development, Markdown/frontmatter, media assets, commits, pull requests, and review. Later, I designed and now maintain the writer-facing `kb` workflow, using Claude Code to implement the command layer. The underlying review rules were formalized collaboratively with colleagues.
+
+## Approach
+
+The current workflow keeps the same repository lifecycle but expresses repetitive mechanics through documentation-specific commands. Review depth changes with content risk: low-risk content fixes can rely more on automated checks; standard changes add technical-writer review; domain-sensitive content can add SME fact-checking before staging.
+
+<div className="proof"><h3>Manual process → documentation command layer</h3><div className="flowgrid"><div className="panel"><b>Earlier</b><div className="code">{`pull develop
+create branch
+edit Markdown
+stage files
+commit
+push
+open PR
+review`}</div></div><div className="arrow">→</div><div className="panel"><b>Current</b><div className="code">{`kb submit
+kb review
+kb approve
+kb merge
+
++ SME / sync / reject paths`}</div></div></div><p className="small">The commands still follow the same branch, pull-request, review, staging, and release model that writers previously handled manually.</p></div>
+
+## Technical implementation
+
+The commands coordinate Git/GitHub operations, generated documentation artifacts, and Jira transitions. They stage only approved documentation paths rather than using a broad `git add -A`, and stop on unexpected code/config changes or unrelated dirty files. During one update, unrelated local changes were detected, so the documentation change was moved to a clean `develop`-based worktree before staging verification.
+
+## Collaboration
+
+The writer-facing command layer is mine to maintain, while the review model itself was developed with colleagues and works inside existing engineering infrastructure. Reviewer, SME, Product Owner, and Technical Writing Lead checkpoints remain part of the delivery process.
+
+## Result
+
+Documentation-specific commands now handle repeatable Git, GitHub, Jira, and staging mechanics without bypassing the repository's branch, pull-request, and review model. Writers no longer need to execute every command manually, but they still choose the appropriate review path, verify the result on staging, and hand off an approved change for release.
+
+## What I learned
+
+Automating repository mechanics is useful only when the automation preserves the underlying delivery model and has clear stop conditions for unsafe repository state.
+
+</article></div></Layout>
