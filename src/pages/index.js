@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const featured = [
   {
@@ -37,7 +36,7 @@ const additional = [
 ];
 
 export default function Home(){
-  const cvUrl = useBaseUrl('/mikhail-bezrukov-cv.pdf');
+  const cvUrl = 'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf';
   return <Layout title="Senior Technical Writer" description="Mikhail Bezrukov — product documentation, docs-as-code, visual documentation, and AI-assisted workflows">
     <main>
       <section className="hero"><div className="wrap">
