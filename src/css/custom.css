@@ -182,3 +182,10 @@ main.container{max-width:1120px}
 
 /* About navigates to the landing-page section, so do not show it as an external link */
 .navbar-about-link svg{display:none}
+
+
+/* Explicit mobile portfolio navigation */
+.mobile-portfolio-menu{padding:10px 8px}
+.mobile-portfolio-menu .menu__list-item{margin:2px 0}
+.mobile-portfolio-menu .menu__link{font-size:18px;font-weight:650;padding:12px 14px;border-radius:10px;color:var(--ink)}
+.mobile-portfolio-menu .menu__link:hover{background:#f3f6f9;color:var(--accent)}
