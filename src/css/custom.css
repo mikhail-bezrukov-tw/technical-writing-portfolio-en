@@ -173,3 +173,9 @@ main.container{max-width:1120px}
 .contact-label{font-size:10px;letter-spacing:.09em;font-weight:800;color:var(--accent);margin-bottom:8px}
 .about-cv{justify-self:start;margin-top:2px}
 @media(max-width:780px){.about-grid{grid-template-columns:1fr;gap:28px}}
+
+
+/* Contact value hierarchy */
+.contact-row{display:flex;align-items:baseline;gap:10px;margin:5px 0 8px;flex-wrap:wrap}
+.contact-kind{font-size:12px;font-weight:600;color:var(--muted);min-width:58px}
+.contact-row a{display:inline;margin:0;font-size:17px;font-weight:750;color:#1f5681}
