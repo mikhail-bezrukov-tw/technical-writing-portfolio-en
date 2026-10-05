@@ -75,7 +75,7 @@ function WorkCard({item, type}) {
 }
 
 export default function Home(){
-  const cvUrl = 'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf';
+  const cvUrl = 'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf?v=20261005-1758';
   return <Layout title="Senior Technical Writer" description="Mikhail Bezrukov — product documentation, docs-as-code, visual documentation, and AI-assisted workflows">
     <main>
       <section className="hero"><div className="wrap">
