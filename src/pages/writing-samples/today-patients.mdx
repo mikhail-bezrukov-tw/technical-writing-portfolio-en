@@ -38,29 +38,37 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
       </div>
 
       <figure className="kb-side-shot">
-        <img src={useBaseUrl('/img/today-patients-mockup.png')} alt="Anonymized Figma mockup of the Today page with four numbered UI regions"/>
-        <figcaption>Anonymized Figma mockup. Names and clinical data are fictional.</figcaption>
+        <img src={useBaseUrl('/img/today-patients-production.png')} alt="Today page with four numbered UI regions"/>
+        
       </figure>
     </div>
 
     <h2>Tracking a PCP Group's Performance</h2>
     <p className="kb-location"><strong>Location:</strong> Patients &gt; Today</p>
 
-    <p>When a PCP Group is selected instead of a single PCP, Today switches to an aggregated Dashboard view for the whole group. Instead of a single day's schedule, the page shows group performance metrics.</p>
+    <div className="kb-two-column group-grid">
+      <div className="kb-copy">
+        <p>When a PCP Group is selected instead of a single PCP, Today switches to an aggregated Dashboard view for the whole group. Instead of a single day's schedule, the page shows group performance metrics.</p>
 
-    <p><strong>Summary row</strong> — four scores for the selected group:</p>
-    <ul>
-      <li><strong>Overall Score</strong> — a composite score across key performance metrics.</li>
-      <li><strong>Members</strong> — the total number of unique members managed by the group.</li>
-      <li><strong>Care Gaps Score</strong> — how well the group manages and closes care gaps.</li>
-      <li><strong>Utilization</strong> — how well the group coordinates care and avoids unnecessary utilization.</li>
-    </ul>
+        <p><strong>Summary row</strong> — four scores for the selected group:</p>
+        <ul>
+          <li><strong>Overall Score</strong> — a composite score across key performance metrics.</li>
+          <li><strong>Members</strong> — the total number of unique members managed by the group.</li>
+          <li><strong>Care Gaps Score</strong> — how well the group manages and closes care gaps.</li>
+          <li><strong>Utilization</strong> — how well the group coordinates care and avoids unnecessary utilization.</li>
+        </ul>
 
-    <p><strong>Care Gaps Outlook</strong> shows the monthly share of addressed care gaps over the last 12 months.</p>
+        <p><strong>Care Gaps Outlook</strong> shows the monthly share of addressed care gaps over the last 12 months.</p>
 
-    <p><strong>Care Gaps Execution</strong> summarizes action and confirmation rates for the group, with targets or period-over-period change where applicable.</p>
+        <p><strong>Care Gaps Execution</strong> summarizes action and confirmation rates for the group, with targets or period-over-period change where applicable.</p>
 
-    <p><strong>Operational Signals</strong> includes Membership Pulse, HEDIS Composite, and Utilization Follow-up cards for a compact view of panel health.</p>
+        <p><strong>Operational Signals</strong> includes Membership Pulse, HEDIS Composite, and Utilization Follow-up cards for a compact view of panel health.</p>
+      </div>
+
+      <figure className="kb-side-shot group-shot">
+        <img src={useBaseUrl('/img/today-dashboard-production.png')} alt="PCP Group dashboard view"/>
+      </figure>
+    </div>
   </article>
 </div>
 </Layout>
