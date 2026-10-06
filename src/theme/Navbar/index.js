@@ -7,7 +7,7 @@ export default function Navbar() {
   const homeUrl = useBaseUrl('/');
   const documentationUrl = useBaseUrl('/documentation');
   const caseStudiesUrl = useBaseUrl('/case-studies');
-  const cvUrl = useBaseUrl('/mikhail-bezrukov-cv.pdf') + '?v=20261005-final';
+  const cvUrl = useBaseUrl('/mikhail-bezrukov-cv.pdf') + '?v=20261006-email';
   const aboutUrl = `${homeUrl}#about`;
 
   const close = () => setOpen(false);
