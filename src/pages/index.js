@@ -75,7 +75,7 @@ function WorkCard({item, type}) {
 }
 
 export default function Home(){
-  const cvUrl = 'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf?v=20261005-final';
+  const cvUrl = 'https://mikhail-bezrukov-tw.github.io/technical-writing-portfolio-en/mikhail-bezrukov-cv.pdf?v=20261006-email';
   return <Layout title="Senior Technical Writer" description="Mikhail Bezrukov — product documentation, docs-as-code, visual documentation, and AI-assisted workflows">
     <main>
       <section className="hero"><div className="wrap">
@@ -128,7 +128,7 @@ export default function Home(){
             <div className="contact-card">
               <div className="contact-label">CONTACT ME</div>
               <div className="contact-row"><span className="contact-kind">Telegram</span><a href="https://t.me/el_miguel">@el_miguel</a></div>
-              <div className="contact-row"><span className="contact-kind">Email</span><a href="mailto:Snail7070@gmail.com">Snail7070@gmail.com</a></div>
+              <div className="contact-row"><span className="contact-kind">Email</span><a href="mailto:mikhail.bezrukov.tw@gmail.com">mikhail.bezrukov.tw@gmail.com</a></div>
             </div>
             <div className="contact-card">
               <div className="contact-label">TECHNICAL WRITING CHANNEL</div>
