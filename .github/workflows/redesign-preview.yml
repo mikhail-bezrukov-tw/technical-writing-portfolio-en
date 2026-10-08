@@ -48,7 +48,10 @@ jobs:
             if (url.pathname === base) return;
             event.preventDefault();
             event.stopImmediatePropagation();
-            window.location.assign(url.pathname + '.html' + url.search + url.hash);
+            const targetPath = url.pathname.endsWith('/')
+              ? url.pathname + 'index.html'
+              : url.pathname + '/index.html';
+            window.location.assign(targetPath + url.search + url.hash);
           }, true);
           </script>'''
           for path in Path('build').rglob('*.html'):
