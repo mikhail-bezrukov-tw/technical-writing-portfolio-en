@@ -1,0 +1,40 @@
+name: Build redesign preview
+
+on:
+  push:
+    branches:
+      - redesign/ru-style
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout redesign branch
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Configure preview base URL
+        run: |
+          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-build/'#" docusaurus.config.js
+
+      - name: Build preview
+        run: npm run build
+
+      - name: Publish preview branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: preview-build
+          publish_dir: ./build
+          force_orphan: true
