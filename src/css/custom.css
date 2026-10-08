@@ -1148,3 +1148,25 @@ footer,.footer{
     animation-iteration-count:1!important;
   }
 }
+
+
+/* Let custom MDX pages use the full canvas; Docusaurus' generated TOC is not part of the portfolio design. */
+html.mdx-page main.container.container--fluid.margin-vert--lg{
+  max-width:none;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  padding:0;
+}
+html.mdx-page main.container.container--fluid>.row{
+  display:block;
+  margin:0;
+}
+html.mdx-page main.container.container--fluid>.row>.col--8{
+  width:100%;
+  max-width:none;
+  flex:0 0 100%;
+  padding:0;
+}
+html.mdx-page main.container.container--fluid>.row>.col--2{
+  display:none;
+}
