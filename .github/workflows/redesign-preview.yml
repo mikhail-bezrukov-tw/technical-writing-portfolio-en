@@ -27,6 +27,7 @@ jobs:
       - name: Configure preview base URL
         run: |
           sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-build/'#" docusaurus.config.js
+          sed -i "s#trailingSlash: false#trailingSlash: true#" docusaurus.config.js
 
       - name: Build preview
         run: npm run build
