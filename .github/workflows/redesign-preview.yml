@@ -26,7 +26,7 @@ jobs:
 
       - name: Configure preview base URL
         run: |
-          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-hybrid-v4/'#" docusaurus.config.js
+          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-hybrid-v5/'#" docusaurus.config.js
           sed -i "s#trailingSlash: false#trailingSlash: true#" docusaurus.config.js
 
       - name: Build preview
@@ -38,7 +38,7 @@ jobs:
           from pathlib import Path
           import re
 
-          base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-hybrid-v4/'
+          base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-hybrid-v5/'
           css_files = list(Path('build/assets/css').glob('styles.*.css'))
           if not css_files:
               raise SystemExit('Built CSS file not found')
@@ -94,6 +94,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: preview-hybrid-v4
+          publish_branch: preview-hybrid-v5
           publish_dir: ./build
           force_orphan: true
