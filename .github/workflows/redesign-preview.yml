@@ -26,39 +26,67 @@ jobs:
 
       - name: Configure preview base URL
         run: |
-          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-blue-v2/'#" docusaurus.config.js
+          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-static-v3/'#" docusaurus.config.js
           sed -i "s#trailingSlash: false#trailingSlash: true#" docusaurus.config.js
 
       - name: Build preview
         run: npm run build
 
-      - name: Make preview links work on static branch hosting
+      - name: Make a self-contained static preview
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          script = r'''<script>
-          document.addEventListener('click', function (event) {
-            const a = event.target.closest && event.target.closest('a');
-            if (!a) return;
-            const url = new URL(a.href, window.location.href);
-            const base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-blue-v2/';
-            if (url.origin !== window.location.origin || !url.pathname.startsWith(base)) return;
-            if (url.hash && url.pathname === base) return;
-            if (/\.[a-z0-9]+$/i.test(url.pathname)) return;
-            if (url.pathname === base) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-            const targetPath = url.pathname.endsWith('/')
-              ? url.pathname + 'index.html'
-              : url.pathname + '/index.html';
-            window.location.assign(targetPath + url.search + url.hash);
-          }, true);
-          </script>'''
+          import re
+
+          base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-static-v3/'
+          css_files = list(Path('build/assets/css').glob('styles.*.css'))
+          if not css_files:
+              raise SystemExit('Built CSS file not found')
+          css = css_files[0].read_text(encoding='utf-8')
+
+          def rewrite_href(match):
+              url = match.group(1)
+              if not url.startswith(base):
+                  return match.group(0)
+
+              tail = url[len(base):]
+              if tail == '':
+                  return f'href="{base}index.html"'
+
+              if tail.startswith('#'):
+                  return f'href="{base}index.html{tail}"'
+
+              hash_part = ''
+              query_part = ''
+              path_part = tail
+
+              if '#' in path_part:
+                  path_part, frag = path_part.split('#', 1)
+                  hash_part = '#' + frag
+              if '?' in path_part:
+                  path_part, query = path_part.split('?', 1)
+                  query_part = '?' + query
+
+              if re.search(r'\.[A-Za-z0-9]+$', path_part):
+                  return match.group(0)
+
+              path_part = path_part.rstrip('/') + '/index.html'
+              return f'href="{base}{path_part}{query_part}{hash_part}"'
+
           for path in Path('build').rglob('*.html'):
               text = path.read_text(encoding='utf-8')
-              if 'Make preview links work on static branch hosting' in text:
-                  continue
-              text = text.replace('</body>', '<!-- Make preview links work on static branch hosting -->' + script + '</body>')
+
+              text = re.sub(
+                  r'<link rel="stylesheet" href="[^"]*assets/css/styles\.[^"]+\.css">',
+                  '<style>' + css + '</style>',
+                  text
+              )
+
+              # Raw static preview does not need the Docusaurus runtime.
+              text = re.sub(r'<script[^>]*>[^<]*function insertBanner\(\).*?</script>', '', text, flags=re.S)
+              text = re.sub(r'<script[^>]+src="[^"]*assets/js/[^"]+"[^>]*></script>', '', text)
+
+              text = re.sub(r'href="([^"]+)"', rewrite_href, text)
               path.write_text(text, encoding='utf-8')
           PY
 
@@ -66,6 +94,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: preview-blue-v2
+          publish_branch: preview-static-v3
           publish_dir: ./build
           force_orphan: true
