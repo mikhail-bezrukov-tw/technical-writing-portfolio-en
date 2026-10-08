@@ -26,7 +26,7 @@ jobs:
 
       - name: Configure preview base URL
         run: |
-          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-build/'#" docusaurus.config.js
+          sed -i "s#baseUrl: '/technical-writing-portfolio-en/'#baseUrl: '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-blue-v2/'#" docusaurus.config.js
           sed -i "s#trailingSlash: false#trailingSlash: true#" docusaurus.config.js
 
       - name: Build preview
@@ -41,7 +41,7 @@ jobs:
             const a = event.target.closest && event.target.closest('a');
             if (!a) return;
             const url = new URL(a.href, window.location.href);
-            const base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-build/';
+            const base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-blue-v2/';
             if (url.origin !== window.location.origin || !url.pathname.startsWith(base)) return;
             if (url.hash && url.pathname === base) return;
             if (/\.[a-z0-9]+$/i.test(url.pathname)) return;
@@ -66,6 +66,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: preview-build
+          publish_branch: preview-blue-v2
           publish_dir: ./build
           force_orphan: true
