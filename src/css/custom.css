@@ -1914,3 +1914,14 @@ html.mdx-page main.container.container--fluid>.row>.col--2{
 @media(max-width:520px){
   .legacy-reader .casehead h1{font-size:34px}
 }
+
+
+/* AI Assistant sample: keep screenshots readable without dominating the article */
+.docsample-shell.legacy-reader .ai-assistant-shot{
+  width:min(100%,820px);
+  margin:22px auto 28px;
+}
+.docsample-shell.legacy-reader .ai-assistant-shot img{
+  width:100%;
+  height:auto;
+}
