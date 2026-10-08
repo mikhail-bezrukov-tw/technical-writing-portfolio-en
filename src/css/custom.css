@@ -1170,3 +1170,102 @@ html.mdx-page main.container.container--fluid>.row>.col--8{
 html.mdx-page main.container.container--fluid>.row>.col--2{
   display:none;
 }
+
+
+/* === Blue refinement after visual review === */
+:root{
+  /* Keep the warm accent only for the MB mark and section labels.
+     Everything else that previously used the coral token now follows the blue system. */
+  --peach:#ef6048;
+  --peach-dark:#bd402f;
+  --peach-soft:#ffe9e3;
+  --coral:var(--accent);
+  --coral-dark:var(--accent-dark);
+  --coral-soft:var(--accent-soft);
+}
+
+/* MB mark: the only warm accent in the navigation */
+.portfolio-navbar__brand{
+  width:42px;
+  min-width:42px;
+  height:42px;
+  min-height:42px;
+  padding:0;
+  justify-content:center;
+  overflow:hidden;
+  border-color:var(--peach);
+  background:rgba(255,233,227,.34);
+  color:var(--accent);
+  font-size:0;
+}
+.portfolio-navbar__brand::before{
+  content:"MB";
+  font-size:14px;
+  font-weight:850;
+  letter-spacing:-.04em;
+}
+.portfolio-navbar__brand:hover{border-color:var(--peach-dark);color:var(--accent-dark)}
+
+/* Warm pills are reserved for section labels such as ABOUT / HOW I WORK */
+.section-kicker{
+  background:var(--peach);
+  color:#fff;
+}
+
+/* Remove the large peach surfaces: use cool/blue neutrals instead */
+.doc-section{
+  background:#f7f9ff;
+}
+.case-section{
+  background:
+    linear-gradient(rgba(49,86,216,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(49,86,216,.035) 1px,transparent 1px),
+    #eef3ff;
+  background-size:32px 32px;
+}
+.about-section{
+  background:#f7f9ff;
+}
+.listing-hero+.section{
+  background:
+    linear-gradient(rgba(49,86,216,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(49,86,216,.03) 1px,transparent 1px),
+    #eef3ff;
+  background-size:32px 32px;
+}
+
+/* Documentation and case-study cards now share the blue accent system */
+.work-card.doc,
+.work-card.case{
+  --card-accent:var(--accent);
+}
+.work-card.doc .work-type,
+.work-card.case .work-type{
+  color:var(--accent)!important;
+}
+
+/* Decorative geometry stays, but no longer reads as an alert */
+.hero::before{
+  border-color:rgba(49,86,216,.34);
+  background:rgba(232,237,255,.78);
+  box-shadow:22px 22px 0 rgba(49,86,216,.07);
+}
+.content::after,
+.kb-article::after{
+  background:rgba(49,86,216,.07);
+}
+.sample-note{
+  border-left-color:var(--accent);
+  background:#f5f7ff;
+}
+.featured-card{
+  background:var(--paper);
+}
+
+/* Links and hover states remain within the blue system */
+.btn:hover,
+.section-more a:hover,
+.content a:hover{
+  border-color:var(--accent);
+  color:var(--accent-dark);
+}
