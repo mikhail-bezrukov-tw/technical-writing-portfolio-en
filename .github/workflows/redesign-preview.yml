@@ -32,6 +32,33 @@ jobs:
       - name: Build preview
         run: npm run build
 
+      - name: Make preview links work on static branch hosting
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          script = r'''<script>
+          document.addEventListener('click', function (event) {
+            const a = event.target.closest && event.target.closest('a');
+            if (!a) return;
+            const url = new URL(a.href, window.location.href);
+            const base = '/mikhail-bezrukov-tw/technical-writing-portfolio-en/preview-build/';
+            if (url.origin !== window.location.origin || !url.pathname.startsWith(base)) return;
+            if (url.hash && url.pathname === base) return;
+            if (/\.[a-z0-9]+$/i.test(url.pathname)) return;
+            if (url.pathname === base) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            window.location.assign(url.pathname + '.html' + url.search + url.hash);
+          }, true);
+          </script>'''
+          for path in Path('build').rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              if 'Make preview links work on static branch hosting' in text:
+                  continue
+              text = text.replace('</body>', '<!-- Make preview links work on static branch hosting -->' + script + '</body>')
+              path.write_text(text, encoding='utf-8')
+          PY
+
       - name: Publish preview branch
         uses: peaceiris/actions-gh-pages@v4
         with:
